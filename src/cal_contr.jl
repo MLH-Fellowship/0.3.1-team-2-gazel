@@ -13,7 +13,6 @@ cntr=0
 for i in eachindex(A)
         global cntr
         cntr+=1
-        println(cntr)
            if cntr<=sz
                enqueue!(pq_max, i, A[i])
            else
