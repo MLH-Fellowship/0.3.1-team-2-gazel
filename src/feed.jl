@@ -22,6 +22,7 @@ Main function which starts the video feed
 """
 function start()
     cam = VideoIO.opencamera()
+    display = _getDisplay()
     n = 0
     while true
         n += 1
@@ -37,7 +38,7 @@ function start()
         channels = channelview(float.(hsl_img))
         L = channels[3,:,:]
         brightness = sum(L)/length(L)
-        _setBrightness("eDP-1", brightness)
+        _setBrightness(display, brightness)
     end
 end
 

@@ -7,7 +7,6 @@ between 0 to 1
 Note: it doesn't changes the brightness through hardware
 
 """
-
 function _setBrightness(display, level)
     if display == "" || display == nothing
         error("display not provided")
@@ -16,6 +15,8 @@ function _setBrightness(display, level)
     end
     run(`xrandr --output $(display) --brightness $(level)`)
 end
+
+
 
 """
 _getDisplay()
@@ -29,6 +30,15 @@ eDP-1
 """
 function _getDisplay()
     # current regex to find display
-    # ([a-zA-Z])\w+\-[0-9]+
+    # ([a-zA-Z])+\-[0-9]+
     run(pipeline(`xrandr -q`,`grep " connected"`, "config"))
+    config = open("config")
+    extractedLine = read(config, String)
+    regexmatch = match(r"[a-zA-Z]+\-[0-9]+", extractedLine)
+    if regexmatch === nothing
+        error("No display found")
+    else
+        close(config)
+        return regexmatch.match
+    end
 end
