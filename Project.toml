@@ -1,10 +1,10 @@
-name = "0.3.1-team-2"
-uuid = "81469e62-7222-4b1c-a5af-792c13d2b7cf"
+name = "gazel"
+uuid = "a7e0bb3e-a565-4714-b33d-436a33774a69"
 authors = ["Nabanita Dash", "Biswajit Ghosh", "Gautam Mishra"]
 version = "0.1.0"
 
 [compat]
-julia = "0.7"
+julia = "1"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
