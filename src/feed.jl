@@ -1,4 +1,5 @@
 using VideoIO, Images
+include("control.jl")
 
 """
     getc1()
@@ -33,9 +34,10 @@ function start()
         end
         rgb_img = read(cam)
         hsl_img = HSL.(rgb_img)
-        channels = channelview(fsloat.(hsl_img))
-        brightness = channels[3,:,:]
-        println(sum(brightness)/length(brightness))
+        channels = channelview(float.(hsl_img))
+        L = channels[3,:,:]
+        brightness = sum(L)/length(L)
+        _setBrightness("eDP-1", brightness)
     end
 end
 
