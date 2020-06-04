@@ -27,17 +27,25 @@ for i in eachindex(A)
            end
        end
 contrast = 0
+bright = 0
+dark = 0
 cntr=sz
 while cntr>0
     global cntr
     global contrast
+    global bright
+    global dark
     cntr-=1
     contrast +=peek(pq_max).second
+    bright +=peek(pq_max).second
     contrast +=peek(pq_min).second
+    dark -=peek(pq_min).second
     dequeue!(pq_max)
     dequeue!(pq_min)
 end
 
-contrast /= sz
+contrast /= (2.0*sz)
+bright /= sz
+dark /= sz
 
 println(contrast)
