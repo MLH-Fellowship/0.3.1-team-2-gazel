@@ -1,4 +1,4 @@
-using VideoIO, Images, DifferentialEquations, DataStructures
+using VideoIO, Images, DifferentialEquations, DataStructures, ImageTransformations
 include("control.jl")
 include("cal_contr.jl")
 
@@ -18,10 +18,11 @@ function _start(display)
         if n != 0
             continue
         end
+        rgbImg = imresize(rgbImg, ratio=1/8)
         singleChannel = processImage(rgbImg, "HSL")
         # brightness = min(1.0, sum(singleChannel)/length(singleChannel))
         # println(searchsortedfirst(arsol, brightness*10))
-        # println(compute_contr(singleChannel))
+        println(compute_contr(singleChannel))
         # println(searchsortedfirst(arsol,brightness*10))
         # _setBrightness(display, brightness)
         # println(size(singleChannel))
