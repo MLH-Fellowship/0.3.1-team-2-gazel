@@ -13,10 +13,10 @@ The project is under active development you can install the package directly for
 ```
 
 ## Usage
-Clone the project and go to project folder
+usiage is pretty simple after installing just do the foolowing commad
 
 ```
-julia gazel.jl
+julia> using gazel
 ```
 
 ## Technologies Used
