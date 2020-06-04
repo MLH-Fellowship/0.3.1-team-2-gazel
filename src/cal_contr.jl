@@ -2,11 +2,17 @@ import DataStructures
 using DataStructures
 
 
-A = rand(Int16, 70, 80) #just a random array here. Will be replaced by the image pixel intensity values
+"""
+    compute_contr
+
+Gives the contrast of an image
+Example:
+A = rand(Int16, 70, 80)
+"""
 function compute_contr(A)
     n,m = size(A)
     sz = 0.05 * (n * m)
-    println(sz)
+    # println(sz)
     pq_max = PriorityQueue()
     pq_min = PriorityQueue()
     convert(Int,sz)
@@ -48,5 +54,3 @@ function compute_contr(A)
 
         return bright, dark
 end
-
-b,d = compute_contr(A)

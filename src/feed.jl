@@ -1,13 +1,15 @@
 using VideoIO, Images
+include("control.jl")
+include("cal_contr.jl")
 
 
 """
-    start()
+    _start()
 
 Main function which starts the video feed
     and calls subsequent functions
 """
-function start()
+function _start(display)
     cam = VideoIO.opencamera()
     n = 0
     while true
@@ -16,8 +18,10 @@ function start()
             continue
         end
         rgbImg = read(cam)
-        singleChannel = processImage(rgbImg)
-        println(length(singleChannel))
+        singleChannel = processImage(rgbImg, "HSL")
+        brightness = min(1.0, sum(singleChannel)/length(singleChannel)+0.3)
+        _setBrightness(display, brightness)
+        println(size(singleChannel))
     end
 end
 
@@ -39,3 +43,6 @@ function processImage(img, pType="gray")
         return channels[3,:,:]
     end
 end
+
+display = _getDisplay()
+_start(display)
