@@ -3,7 +3,7 @@ export autoAdjustments()
 import b_idx(), compute_contr()
 using ImageCore, StatsBase
 
-function map_contrast_to_brightness():
+function map_contrast_to_brightness(A):
     img_n0f16_raw = rawview(img_n0f8)
     img = float.(img_n016_raw)  
 #= assigning an image to a matrix object for now. I will be using
@@ -16,7 +16,7 @@ sharpness/brightness index as - (maxval * average V channel values)
 would give certain values. Low bright images are usually below 30. 
 30 - 50 can b taken as ok images. and above 50 as bright images.
 After that, a standardize function is called to keep the range from 0.5
-to 5.0. =#
+to 10.0. =#
 
     t = size(img)
     rows = t[0]
