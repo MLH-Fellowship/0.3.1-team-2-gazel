@@ -16,7 +16,7 @@ sharpness/brightness index as - (maxval * average V channel values)
 would give certain values. Low bright images are usually below 30. 
 30 - 50 can b taken as ok images. and above 50 as bright images.
 After that, a standardize function is called to keep the range from 0.5
-to 1.0. =#
+to 5.0. =#
 
     t = size(img)
     rows = t[0]
@@ -29,7 +29,10 @@ to 1.0. =#
 
     brightness = (ahigh * v_avg)/h_avg
 
-    std_bright = standardize(UnitRangeTransform, brightness)
+    min = 0.5
+    max = 10 
+    
+    std_bright = min + ((brightness-min)/((max-min)/2))*(max-min)
     return std_bright
     end
 
