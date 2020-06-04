@@ -2,15 +2,19 @@ using VideoIO, Images, DifferentialEquations, DataStructures, ImageTransformatio
 include("control.jl")
 include("cal_contr.jl")
 
-
 """
     _start()
 
 Main function which starts the video feed
     and calls subsequent functions
 """
-function _start(display)
+function _start(display, arsol)
     cam = VideoIO.opencamera()
+
+    # set the previous brightness to 1
+    prevBrightness = 1.0
+    _setBrightness(display, prevBrightness)
+
     n = 0
     while true
         n = (n+1)%10
@@ -20,9 +24,10 @@ function _start(display)
         end
         rgbImg = imresize(rgbImg, ratio=1/8)
         singleChannel = processImage(rgbImg, "HSL")
-        # brightness = min(1.0, sum(singleChannel)/length(singleChannel))
-        # println(searchsortedfirst(arsol, brightness*10))
-        println(compute_contr(singleChannel))
+        toBeBrightness = min(1.0, sum(singleChannel)/length(singleChannel))
+        startIndex = searchsortedfirst(arsol, toBeBrightness*10)
+        endIndex = searchsortedfirst(arsol, prevBrightness*10)
+        
         # println(searchsortedfirst(arsol,brightness*10))
         # _setBrightness(display, brightness)
         # println(size(singleChannel))
@@ -48,5 +53,5 @@ function processImage(img, pType="gray")
     end
 end
 
-display = _getDisplay()
-_start(display)
+# display = _getDisplay()
+# _start(display)
