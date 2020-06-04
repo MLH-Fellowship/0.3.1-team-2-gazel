@@ -4,7 +4,11 @@ include("cal_contr.jl")
 include("control.jl")
 
 
+"""
+    __init__()
 
+init function
+"""
 function __init__()
     #check_deps()
 
