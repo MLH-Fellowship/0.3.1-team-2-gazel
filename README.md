@@ -13,6 +13,11 @@ The project is under active development you can install the package directly for
 ```
 
 ## Usage
+Clone the project and go to project folder
+
+```
+julia gazel.jl
+```
 
 ## Technologies Used
 
