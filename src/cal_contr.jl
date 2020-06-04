@@ -52,5 +52,5 @@ function compute_contr(A)
         bright /= sz
         dark /= sz
 
-        return bright, dark
+        return contrast
 end

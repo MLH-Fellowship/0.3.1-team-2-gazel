@@ -9,18 +9,19 @@ include("cal_contr.jl")
 Main function which starts the video feed
     and calls subsequent functions
 """
-function _start(display, arsol)
+function _start(display)
     cam = VideoIO.opencamera()
     n = 0
     while true
-        n += 1
-        if n%10 != 0
+        n = (n+1)%10
+        rgbImg = read(cam)
+        if n != 0
             continue
         end
-        rgbImg = read(cam)
         singleChannel = processImage(rgbImg, "HSL")
-        brightness = min(1.0, sum(singleChannel)/length(singleChannel))
-        println(searchsortedfirst(arsol, brightness*10))
+        # brightness = min(1.0, sum(singleChannel)/length(singleChannel))
+        # println(searchsortedfirst(arsol, brightness*10))
+        # println(compute_contr(singleChannel))
         # println(searchsortedfirst(arsol,brightness*10))
         # _setBrightness(display, brightness)
         # println(size(singleChannel))
@@ -46,3 +47,5 @@ function processImage(img, pType="gray")
     end
 end
 
+display = _getDisplay()
+_start(display)
