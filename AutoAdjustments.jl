@@ -3,7 +3,7 @@ export autoAdjustments()
 import b_idx(), compute_contr()
 using ImageCore, StatsBase
 
-function map_contrast_to_brightness(A):
+function map_contrast_to_brightness(img_n0f8):
     img_n0f16_raw = rawview(img_n0f8)
     img = float.(img_n016_raw)  
 #= assigning an image to a matrix object for now. I will be using
