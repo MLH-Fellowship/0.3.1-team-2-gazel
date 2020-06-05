@@ -2,7 +2,7 @@
 
 Here, we are using xrandr to get the brightness of the image frame. The brightness range should be (0, 1]. The corresponding primary display device is also returned at the same time.
 
-**This doesn't change brightness of image frame through hardware.**
+*This doesn't change brightness of image frame through hardware.*
 
 ## _setBrightness() function
 
