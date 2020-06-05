@@ -13,7 +13,7 @@ The project is under active development you can install the package directly for
 ```
 
 ## Usage
-usiage is pretty simple after installing just do the foolowing commad
+Usage is pretty simple after installing just use the following command.
 
 ```
 julia> using gazel
@@ -25,6 +25,10 @@ All the work have been done in julia. We used the following julia projects:
 - DifferentialEquations.jl from SciML
 - Images.jl from JuliaImages
 - VideoIO.jl
+
+## Platform Supported
+
+- Linux 
 
 ## Rules and Standards
 
